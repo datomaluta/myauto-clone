@@ -1,26 +1,37 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/mylogo.png";
-import SearchIcon from "../icons/SearchIcon";
-import PlusIcon from "../icons/PlusIcon";
-import EarthIcon from "../icons/EarthIcon";
-import DownArrowIcon from "../icons/DownArrowIcon";
 import { useState } from "react";
-import UserIcon from "../icons/UserIcon";
-import tnetLogo from "../../assets/images/tnet.png";
-import BurgerIcon from "../icons/BurgerIcon";
-import LeftArrowIcon from "../icons/LeftArrowIcon";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { setMobileBottomHeaderIsVisible } from "../../store/MobileBottomHeaderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import logo from "../../../assets/images/mylogo.png";
+import SearchIcon from "../../icons/SearchIcon";
+import PlusIcon from "../../icons/PlusIcon";
+import EarthIcon from "../../icons/EarthIcon";
+import DownArrowIcon from "../../icons/DownArrowIcon";
+import UserIcon from "../../icons/UserIcon";
+import BurgerIcon from "../../icons/BurgerIcon";
+import { setMobileBottomHeaderIsVisible } from "../../../store/MobileBottomHeaderSlice";
+import LeftArrowIcon from "../../icons/LeftArrowIcon";
+import tnetLogo from "../../../assets/images/tnet.png";
+import { useTranslate } from "../../../hooks/useTranslate";
+import { translations } from "../../../data/translations/common";
+import {
+  setCurrency,
+  setLanguage,
+} from "../../../store/LanguageAndCurrencySlice";
+import { RootState } from "../../../store/store";
 
 const Header = () => {
   const [languageAndCurrencyModalIsOpen, setLanguageAndCurrenctModalIsOpen] =
     useState(false);
   const [mobileSearchIsVisible, setMobileSearchIsVisible] = useState(false);
+  const { language, currency } = useSelector(
+    (state: RootState) => state.languageAndCurrency
+  );
   const dispatch = useDispatch();
+  const { t } = useTranslate(translations);
 
   return (
-    <header className="bg-white  fixed top-0 left-0 w-full border-b border-light-gray">
+    <header className="bg-white  fixed top-0 left-0 w-full ">
       <div className="max-w-[91.875rem] flex items-center mx-auto justify-between py-4 px-3">
         <div className="flex flex-grow">
           <div className="h-10 lg:h-8 shrink-0">
@@ -31,7 +42,7 @@ const Header = () => {
             <input
               className="bg-transparent text-sm outline-none"
               type="text"
-              placeholder="ძებნა"
+              placeholder={t("search")}
             />
           </div>
         </div>
@@ -42,7 +53,7 @@ const Header = () => {
             to={"/"}
           >
             <PlusIcon className="h-6 fill-primary text-white stroke-none" />
-            <span className="font-medium">დამატება</span>
+            <span className="font-medium">{t("add")}</span>
           </Link>
           <div className="lg:hidden relative 0">
             <button
@@ -52,25 +63,47 @@ const Header = () => {
               }
             >
               <EarthIcon className="h-6" />
-              <span className="text-sm font-semibold">ქართული,</span>
-              <span className="text-sm">₾</span>
+              <span className="text-sm font-semibold">
+                {language === "ka" ? "ქართული" : "English"},
+              </span>
+              <span className="text-sm w-4">
+                {currency === "GEL" ? "₾" : "$"}
+              </span>
               <DownArrowIcon className="h-3" />
             </button>
             {languageAndCurrencyModalIsOpen && (
               <div className="w-60 min-h-40 bg-white absolute -bottom-2 right-0 left-0 z-100 translate-y-full rounded-xl">
                 <div className="border-b border-light-gray p-4">
-                  <p className="text-left text-xs">ენა</p>
+                  <p className="text-left text-xs">{t("language")}</p>
                   <ul className="flex flex-col gap-3 mt-5 text-sm">
                     <li>
-                      <button className="flex items-center gap-2 font-medium">
-                        <span className="h-6 w-6 bg-white block rounded-full border-8 border-primary"></span>
+                      <button
+                        onClick={() => dispatch(setLanguage("ka"))}
+                        className="flex items-center gap-2 font-medium"
+                      >
+                        <span
+                          className={`h-6 w-6 bg-white block rounded-full ${
+                            language === "ka"
+                              ? "border-8 border-primary"
+                              : "border border-light-gray"
+                          }`}
+                        ></span>
                         <span>ქართული</span>
                       </button>
                     </li>
                     <li>
-                      <button className="flex items-center gap-2 font-medium">
-                        <span className="h-6 w-6 bg-white border rounded-full border-light-gray block"></span>
-                        <span>ინგლისური</span>
+                      <button
+                        onClick={() => dispatch(setLanguage("en"))}
+                        className="flex items-center gap-2 font-medium"
+                      >
+                        <span
+                          className={`h-6 w-6 bg-white block rounded-full ${
+                            language === "en"
+                              ? "border-8 border-primary"
+                              : "border border-light-gray"
+                          }`}
+                        ></span>
+                        <span>English</span>
                       </button>
                     </li>
                   </ul>
@@ -79,14 +112,32 @@ const Header = () => {
                   <p className="text-left text-xs">ვალუტა</p>
                   <ul className="flex flex-col gap-3 mt-5 text-sm">
                     <li>
-                      <button className="flex items-center gap-2 font-medium">
-                        <span className="h-6 w-6 bg-white block rounded-full border-8 border-primary"></span>
+                      <button
+                        onClick={() => dispatch(setCurrency("USD"))}
+                        className="flex items-center gap-2 font-medium"
+                      >
+                        <span
+                          className={`h-6 w-6 bg-white block rounded-full ${
+                            currency === "USD"
+                              ? " border-8 border-primary"
+                              : " border border-light-gray"
+                          }`}
+                        ></span>
                         <span>USD - $</span>
                       </button>
                     </li>
                     <li>
-                      <button className="flex items-center gap-2 font-medium">
-                        <span className="h-6 w-6 bg-white border rounded-full border-light-gray block"></span>
+                      <button
+                        onClick={() => dispatch(setCurrency("GEL"))}
+                        className="flex items-center gap-2 font-medium"
+                      >
+                        <span
+                          className={`h-6 w-6 bg-white block rounded-full ${
+                            currency === "GEL"
+                              ? " border-8 border-primary"
+                              : " border border-light-gray"
+                          }`}
+                        ></span>
                         <span>GEL - ₾</span>
                       </button>
                     </li>
@@ -100,7 +151,7 @@ const Header = () => {
             className="lg:hidden h-10 rounded-xl border border-light-gray flex gap-2 items-center px-3 hover:bg-gray-for-bg hover:border-light-gray-shade transition-all duration-300 relative text-sm font-semibold"
           >
             <UserIcon className="h-6 w-6 stroke-black" />
-            შესვლა
+            {t("log_in")}
           </Link>
           <div className="flex items-center gap-4">
             <button

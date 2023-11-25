@@ -1,16 +1,10 @@
-import Header from "../components/header/Header";
-import BottomHeader from "../components/header/bottomHeader/BottomHeader";
-import MobileBottomHeader from "../components/header/bottomHeader/MobileBottomHeader";
-import Menubar from "../components/header/menubar/Menubar";
+import DefaultLayout from "../components/layout/DefaultLayout";
 
 const Home = () => {
   return (
-    <div className="min-h-screen ">
-      <Header />
-      <BottomHeader />
-      <MobileBottomHeader />
-      <Menubar />
-    </div>
+    <DefaultLayout>
+      <div className="p-4">here is children</div>
+    </DefaultLayout>
   );
 };
 
