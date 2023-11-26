@@ -1,9 +1,11 @@
 import DefaultLayout from "../components/layout/DefaultLayout";
 
+import Filter from "../components/homeComponents/filter/Filter";
+
 const Home = () => {
   return (
     <DefaultLayout>
-      <div className="p-4">here is children</div>
+      <Filter />
     </DefaultLayout>
   );
 };

@@ -8,8 +8,11 @@ import {
 } from "../../../store/LanguageAndCurrencySlice";
 import { setMobileBottomHeaderIsVisible } from "../../../store/MobileBottomHeaderSlice";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslate } from "../../../hooks/useTranslate";
+import { translations } from "../../../data/translations/common";
 
 const MobileBottomHeader = () => {
+  const { t } = useTranslate(translations);
   const { mobileBottomHeaderIsVisible } = useSelector(
     (state: RootState) => state.mobileBottomHeader
   );
@@ -30,7 +33,7 @@ const MobileBottomHeader = () => {
             className="bg-white fixed top-0 left-0 w-full h-screen z-20 p-6"
           >
             <div className="flex justify-between items-center">
-              <p className="text-xs text-light-gray-shade">მენიუ</p>
+              <p className="text-xs text-light-gray-shade">{t("menu")}</p>
               <button
                 onClick={() => dispatch(setMobileBottomHeaderIsVisible())}
                 className="bg-light-gray rounded-full p-2"
@@ -40,39 +43,39 @@ const MobileBottomHeader = () => {
             </div>
             <ul className="flex flex-col gap-4 mt-6 border-b border-light-gray pb-8">
               <li>
-                <Link to={"/"}>გაფორმება</Link>
+                <Link to={"/"}>{t("register")}</Link>
               </li>
               <li>
-                <Link to={"/"}>VIN-ის შემოწმება</Link>
+                <Link to={"/"}>{t("vin_check")}</Link>
               </li>
               <li>
-                <Link to={"/"}>დილერები</Link>
+                <Link to={"/"}>{t("dealers")}</Link>
               </li>
               <li>
-                <Link to={"/"}>ავტოსალონები</Link>
+                <Link to={"/"}>{t("dealerships")}</Link>
               </li>
               <li>
-                <Link to={"/"}>ავტონაწილები</Link>
+                <Link to={"/"}>{t("auto_parts")}</Link>
               </li>
               <li>
-                <Link to={"/"}>კატალოგი</Link>
+                <Link to={"/"}>{t("catalogue")}</Link>
               </li>{" "}
               <li>
-                <Link to={"/"}>ბლოგი</Link>
+                <Link to={"/"}>{t("blog")}</Link>
               </li>
             </ul>
             <ul className="flex flex-col gap-4 mt-6 border-b border-light-gray pb-8">
               <li>
-                <Link to={"/"}>მესიჯის მიწერა</Link>
+                <Link to={"/"}>{t("messaging")}</Link>
               </li>
               <li>
-                <Link to={"/"}>ზარის მოთხოვნა</Link>
+                <Link to={"/"}>{t("requesting_call")}</Link>
               </li>
               <li>
-                <Link to={"/"}>დახმარება</Link>
+                <Link to={"/"}>{t("help")}</Link>
               </li>
               <li>
-                <Link to={"/"}>კონტაქტი</Link>
+                <Link to={"/"}>{t("contact")}</Link>
               </li>
             </ul>
             <div className="flex gap-4 mt-7 text-sm">

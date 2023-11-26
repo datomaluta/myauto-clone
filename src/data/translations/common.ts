@@ -55,4 +55,61 @@ export const translations = {
     en: "Help",
     ka: "დახმარება",
   },
+  home: {
+    en: "Home",
+    ka: "მთავარი",
+  },
+  favorites: {
+    en: "Favorites",
+    ka: "ფავორიტები",
+  },
+  login: {
+    en: "Login",
+    ka: "შესვლა",
+  },
+  messaging: {
+    en: "Messaging",
+    ka: "მესიჯის მიწერა",
+  },
+  requesting_call: {
+    en: "Requesting a Call",
+    ka: "ზარის მოთხოვნა",
+  },
+  menu: {
+    en: "Menu",
+    ka: "მენიუ",
+  },
+  for_sale: {
+    en: "For Sale",
+    ka: "იყიდება",
+  },
+  for_rent: {
+    en: "For Rent",
+    ka: "ქირავდება",
+  },
+  filter_clear: {
+    en: "Filter Clear",
+    ka: "ფილტრის გასუფთავება",
+  },
+  cars: {
+    en: "Cars",
+    ka: "ავტომობილები",
+  },
+
+  custom_vehicles: {
+    en: "Custom Vehicles",
+    ka: "სპეცტექნიკა",
+  },
+  motorcycles: {
+    en: "Motorcycles",
+    ka: "მოტოტექნიკა",
+  },
+  manufacturer: {
+    en: "Manufacturer",
+    ka: "მწარმოებელი",
+  },
+  choose: {
+    en: "Choose",
+    ka: "აირჩიეთ",
+  },
 };
